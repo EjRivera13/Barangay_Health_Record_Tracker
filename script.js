@@ -387,6 +387,43 @@ function updateDashboard() {
     document.getElementById("totalPatients").textContent = patients.length;
     document.getElementById("totalConsultations").textContent =
         patients.reduce((total, patient) => total + patient.consultations.length, 0);
+    document.getElementById("malePatients").textContent =
+        patients.filter(patient => patient.gender.toLocaleLowerCase() === "male").length;
+    document.getElementById("femalePatients").textContent =
+        patients.filter(patient => patient.gender.toLocaleLowerCase() === "female").length;
+    displayRecentConsultations();
+}
+
+function displayRecentConsultations() {
+    const list = document.getElementById("recentConsultations");
+    const emptyMessage = document.getElementById("recentEmptyMessage");
+    const consultations = patients.flatMap(patient =>
+        patient.consultations.map(consultation => ({
+            patientName: patient.name,
+            patientId: patient.id,
+            date: consultation.date,
+            concern: consultation.concern
+        }))
+    ).sort((first, second) => second.date.localeCompare(first.date)).slice(0, 5);
+
+    list.replaceChildren();
+    emptyMessage.classList.toggle("hidden", consultations.length > 0);
+
+    consultations.forEach(consultation => {
+        const item = document.createElement("li");
+        const date = document.createElement("time");
+        const details = document.createElement("div");
+        const patient = document.createElement("strong");
+        const concern = document.createElement("p");
+
+        date.dateTime = consultation.date;
+        date.textContent = consultation.date;
+        patient.textContent = `${consultation.patientName} · ${consultation.patientId}`;
+        concern.textContent = consultation.concern;
+        details.append(patient, concern);
+        item.append(date, details);
+        list.appendChild(item);
+    });
 }
 
 document.querySelectorAll(".nav-button").forEach(button => {

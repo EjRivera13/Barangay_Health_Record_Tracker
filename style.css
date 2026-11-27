@@ -155,7 +155,7 @@ h2 {
 
 .dashboard {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 16px;
 }
 
@@ -179,6 +179,16 @@ h2 {
 .consultation-icon {
     background: #edf1fb;
     color: #4a6094;
+}
+
+.gender-icon {
+    background: #eef5ff;
+    color: #3d6091;
+}
+
+.female-icon {
+    background: #fbf0f7;
+    color: #8a4c76;
 }
 
 .stat-card p {
@@ -214,6 +224,85 @@ h2 {
 .privacy-note {
     color: var(--muted);
     font-size: 0.87rem;
+}
+
+.recent-section {
+    margin-top: 24px;
+    padding: 20px;
+    border: 1px solid #e3ebe7;
+    border-radius: 13px;
+    background: #fff;
+}
+
+.recent-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.recent-heading .eyebrow {
+    margin: 0 0 3px;
+}
+
+.recent-heading h3 {
+    margin: 0;
+    color: var(--green-900);
+    font-size: 1.12rem;
+}
+
+.recent-limit {
+    flex: 0 0 auto;
+    padding: 5px 9px;
+    border-radius: 20px;
+    background: var(--green-100);
+    color: var(--green-900);
+    font-size: 0.75rem;
+    font-weight: 650;
+}
+
+.recent-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.recent-list li {
+    display: grid;
+    grid-template-columns: minmax(110px, 145px) minmax(0, 1fr);
+    align-items: start;
+    gap: 16px;
+    padding: 13px 4px;
+    border-top: 1px solid #edf1ef;
+}
+
+.recent-list time {
+    color: var(--green-800);
+    font-size: 0.85rem;
+    font-weight: 700;
+}
+
+.recent-list strong {
+    display: block;
+    overflow-wrap: anywhere;
+    color: var(--ink);
+    font-size: 0.9rem;
+}
+
+.recent-list p {
+    margin: 3px 0 0;
+    color: var(--muted);
+    font-size: 0.86rem;
+    overflow-wrap: anywhere;
+}
+
+.recent-empty {
+    margin: 0;
+    padding: 18px 4px 4px;
+    border-top: 1px solid #edf1ef;
+    color: var(--muted);
+    font-size: 0.88rem;
 }
 
 .primary,
@@ -486,7 +575,7 @@ footer {
     }
 
     .dashboard {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 }
 
@@ -522,6 +611,19 @@ footer {
         width: 40px;
         height: 40px;
         border-radius: 12px;
+    }
+
+    .dashboard {
+        grid-template-columns: 1fr;
+    }
+
+    .recent-section {
+        padding: 16px;
+    }
+
+    .recent-list li {
+        grid-template-columns: 1fr;
+        gap: 4px;
     }
 }
 
